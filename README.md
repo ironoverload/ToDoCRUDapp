@@ -1,9 +1,7 @@
 # streamlit_todo_crud_app
 Streamlit Todo CRUD App is a simple application built using Streamlit that allows users to create, read, update, and delete todo items. It uses SQLite as the database to store the todo items.
 
-[![Streamlit Todo CRUD App](https://static.streamlit.io.badges/
-streamlit_badge_black_white.svg)](https://todocrudapp-l4hbakfk5pysm9j3xtvgm6.streamlit.app/)
-
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://todocrudapp-l4hbakfk5pysm9j3xtvgm6.streamlit.app/)
 
 
 # Features
