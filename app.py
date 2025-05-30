@@ -130,13 +130,28 @@ def main():
             list_of_task = [i[0] for i in view_unique_tasks()]
             # Creates a listbox with the unique list of tasks to delete
             selected_task = st.selectbox("Select Task to Delete", list_of_task)
-            if st.button("Delete Task"):
-                delete_task(selected_task)
-                st.warning("Task Deleted:{}".format(selected_task))
-                st.rerun()
 
-        #delete_task(task)
-        #result = view_all_data()
+            # Initialize confirmation flag
+            if "confirm_delete" not in st.session_state:
+                st.session_state.confirm_delete = False
+
+            if st.button("Delete Task"):
+                st.session_state.confirm_delete = True  # Show confirmation next
+
+            if st.session_state.confirm_delete:
+                st.warning(f"Do you really want to delete this task: {selected_task}?")
+                col1, col2 = st.columns(2)
+                with col1:
+                    if st.button("Yes, Delete"):
+                        delete_task(selected_task)
+                        st.success(f"Task has been successfully deleted: {selected_task}")
+                        st.session_state.confirm_delete = False
+                        st.rerun()
+                with col2:
+                    if st.button("Cancel"):
+                        st.info("Deletion cancelled.")
+                        st.session_state.confirm_delete = False
+
     else:
         st.subheader("About")
 
