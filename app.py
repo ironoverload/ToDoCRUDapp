@@ -90,7 +90,7 @@ def main():
         selected_task = st.selectbox("Select Task to Edit", list_of_task)
 
         selected_result = get_task(selected_task)
-        st.write(selected_result)
+        #st.write(selected_result)
 
         if selected_result:
             task = selected_result[0]
@@ -118,13 +118,25 @@ def main():
             with st.expander("View Updated Tasks"):
                 st.dataframe(df2)
 
-
-
-
     # DELETE TASK
     elif choice == "Delete":
         st.subheader("Delete Task")
+        result = view_all_data()
+        # st.write(result)
+        df = pd.DataFrame(result, columns=["Task Name", "Task Status", "Task Due Date"])
+        with st.expander("Current Tasks"):
+            st.dataframe(df)
 
+            list_of_task = [i[0] for i in view_unique_tasks()]
+            # Creates a listbox with the unique list of tasks to delete
+            selected_task = st.selectbox("Select Task to Delete", list_of_task)
+            if st.button("Delete Task"):
+                delete_task(selected_task)
+                st.warning("Task Deleted:{}".format(selected_task))
+                st.rerun()
+
+        #delete_task(task)
+        #result = view_all_data()
     else:
         st.subheader("About")
 

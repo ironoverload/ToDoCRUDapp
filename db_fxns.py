@@ -54,3 +54,6 @@ def update_task(new_task, new_status, new_due_date, original_task):
     conn.commit()
 
 # DELETE Tasks
+def delete_task(task):
+    c.execute("""DELETE FROM taskstable WHERE task = ?""", (task,))
+    conn.commit()
