@@ -44,4 +44,13 @@ def get_task(task):
     c.execute("""SELECT * FROM taskstable WHERE task = ?""", (task,))
     return c.fetchone()
 
+# Changes to the Selected TASK
+def update_task(new_task, new_status, new_due_date, original_task):
+    c.execute("""
+        UPDATE taskstable 
+        SET task = ?, task_status = ?, task_due_date = ? 
+        WHERE task = ?
+    """, (new_task, new_status, new_due_date, original_task))
+    conn.commit()
+
 # DELETE Tasks

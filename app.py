@@ -79,8 +79,8 @@ def main():
         st.subheader("Edit/Update Task")
         result = view_all_data()
         # st.write(result)
+        df = pd.DataFrame(result, columns=["Task Name", "Task Status", "Task Due Date"])
         with st.expander("View Current Tasks"):
-            df = pd.DataFrame(result, columns=["Task Name", "Task Status", "Task Due Date"])
             st.dataframe(df)
 
         #st.write(view_unique_tasks())
@@ -107,10 +107,16 @@ def main():
                 new_task_status = st.selectbox("Status", ["To Do", "Ongoing", "Done"],index=["To Do", "Ongoing", "Done"].index(task_status))
                 new_task_due_date = st.date_input("Due Date",datetime.datetime.strptime(task_due_date, "%Y-%m-%d").date())
 
+            if st.button("Update Task"):
+                update_task(new_task, new_task_status, new_task_due_date, task)
+                st.success("Task Successfully Updated:: From {} To ::{}".format(task, new_task))
+                st.rerun()
 
-            if st.button("Add Task"):
-                add_data(task, task_status, task_due_date)
-                st.success("Task Added:{}".format(task))
+            result2 = view_all_data()
+            # st.write(result)
+            df2 = pd.DataFrame(result2, columns=["Task Name", "Task Status", "Task Due Date"])
+            with st.expander("View Updated Tasks"):
+                st.dataframe(df2)
 
 
 
