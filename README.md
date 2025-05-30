@@ -5,7 +5,6 @@ Streamlit Todo CRUD App is a simple application built using Streamlit that allow
 - Read todo items
 - Update todo items
 - Delete todo items
-- Search todo items
 
 # Requirements
 - Python 3.7 or higher
